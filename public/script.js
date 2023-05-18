@@ -65,48 +65,55 @@ imageChose.forEach(function (image) {
 
         const playerChose = image.style.backgroundImage;
         player.style.backgroundImage = `${playerChose}`;
-        // player.classList.add("animate-moveRight")
+        player.classList.add("animate-moveRight")
 
         computer.style.backgroundImage = `url(${gameImages[randomImage]})`;
         computer.style.backgroundPosition = "top";
         computer.style.backgroundSize = "cover";
         computer.style.backgroundRepeat = "no-repeat";
-        // computer.classList.add("moveLeft")
+        computer.classList.add("moveLeft")
 
         const computerChose = computer.style.backgroundImage;
 
         if (playerChose === computerChose) {
             score.innerText = "Tie";
+            score.style.color = "green"
         } else if (
             playerChose.includes(gameImages[0]) &&
             computerChose.includes(gameImages[1])
         ) {
             score.innerText = "You lose";
+            score.style.color = "red"
         } else if (
             playerChose.includes(gameImages[0]) &&
             computerChose.includes(gameImages[2])
         ) {
             score.innerText = "You win";
+            score.style.color = "blue"
         } else if (
             playerChose.includes(gameImages[1]) &&
             computerChose.includes(gameImages[0])
         ) {
             score.innerText = "You win";
+            score.style.color = "blue"
         } else if (
             playerChose.includes(gameImages[1]) &&
             computerChose.includes(gameImages[2])
         ) {
             score.innerText = "You lose";
+            score.style.color = "red"
         } else if (
             playerChose.includes(gameImages[2]) &&
             computerChose.includes(gameImages[0])
         ) {
             score.innerText = "You lose";
+            score.style.color = "red"
         } else if (
             playerChose.includes(gameImages[2]) &&
             computerChose.includes(gameImages[1])
         ) {
             score.innerText = "You win";
+            score.style.color = "blue"
         }
 
         rock.style.pointerEvents = "none";
