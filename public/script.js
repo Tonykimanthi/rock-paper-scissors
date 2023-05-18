@@ -75,6 +75,10 @@ imageChose.forEach(function (image) {
 
         const computerChose = computer.style.backgroundImage;
 
+        let scoreCount = 0;
+        let playerScore = document.getElementById("player-score");
+
+
         if (playerChose === computerChose) {
             score.innerText = "Tie";
             score.style.color = "green"
@@ -88,8 +92,23 @@ imageChose.forEach(function (image) {
             playerChose.includes(gameImages[0]) &&
             computerChose.includes(gameImages[2])
         ) {
+            scoreCount++
+            let setScore = localStorage.setItem("storedScore", scoreCount);
+            let getScore = Number(localStorage.getItem("storedScore"));
+
+            getScore = scoreCount;
+            if(setScore){
+                scoreCount = getScore + 1;
+                playerScore.innerText = scoreCount;
+                localStorage.setItem("storedScore", scoreCount);
+            }else{
+                playerScore.innerText = scoreCount;
+                console.log(scoreCount)
+                localStorage.setItem("storedScore", scoreCount);
+            }
             score.innerText = "You win";
             score.style.color = "blue"
+            
         } else if (
             playerChose.includes(gameImages[1]) &&
             computerChose.includes(gameImages[0])
