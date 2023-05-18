@@ -9,8 +9,6 @@ const computer = document.querySelector(".computer");
 
 const imagesToChoose = document.querySelector(".images-to-choose");
 
-const playerScore = document.getElementById("player-score");
-const computerScore = document.getElementById("computer-score");
 const refreshBtn = document.getElementById("refresh-btn");
 
 let randomImage = Math.floor(Math.random() * gameImages.length);
@@ -20,11 +18,12 @@ player.style.backgroundPosition = "top";
 player.style.backgroundSize = "cover";
 player.style.backgroundRepeat = "no-repeat";
 
+
 // Creating image containers
 const rock = document.createElement("div");
 imagesToChoose.appendChild(rock);
-rock.style.width = "10em";
-rock.style.height = "10em";
+rock.style.width = "33%";
+rock.style.height = "10";
 rock.style.backgroundImage = `url(${gameImages[0]})`;
 rock.style.backgroundPosition = "top";
 rock.style.backgroundSize = "cover";
@@ -35,7 +34,7 @@ rock.classList.add("clicked-image");
 
 const paper = document.createElement("div");
 imagesToChoose.appendChild(paper);
-paper.style.width = "10em";
+paper.style.width = "33%";
 paper.style.height = "10em";
 paper.style.backgroundImage = `url(${gameImages[1]})`;
 paper.style.backgroundPosition = "top";
@@ -47,8 +46,8 @@ paper.classList.add("clicked-image");
 
 const scissor = document.createElement("div");
 imagesToChoose.appendChild(scissor);
-scissor.style.width = "10em";
-scissor.style.height = "10em";
+scissor.style.width = "33%";
+// scissor.style.height = "10em";
 scissor.style.backgroundImage = `url(${gameImages[2]})`;
 scissor.style.backgroundPosition = "top";
 scissor.style.backgroundSize = "cover";
@@ -56,6 +55,7 @@ scissor.style.backgroundRepeat = "no-repeat";
 scissor.style.borderRadius = "8px";
 scissor.style.cursor = "pointer";
 scissor.classList.add("clicked-image");
+
 
 let imageChose = document.querySelectorAll(".clicked-image");
 
@@ -65,23 +65,15 @@ imageChose.forEach(function (image) {
 
         const playerChose = image.style.backgroundImage;
         player.style.backgroundImage = `${playerChose}`;
+        // player.classList.add("animate-moveRight")
 
         computer.style.backgroundImage = `url(${gameImages[randomImage]})`;
         computer.style.backgroundPosition = "top";
         computer.style.backgroundSize = "cover";
         computer.style.backgroundRepeat = "no-repeat";
+        // computer.classList.add("moveLeft")
 
         const computerChose = computer.style.backgroundImage;
-
-        let scoreCount = 0;
-        localStorage.setItem("storedScore", scoreCount);
-        let getScore = localStorage.getItem("storedScore");
-
-        if(getScore === null){
-            scoreCount = 0
-        }else{
-            scoreCount = parseInt(getScore)
-        }
 
         if (playerChose === computerChose) {
             score.innerText = "Tie";
@@ -95,10 +87,6 @@ imageChose.forEach(function (image) {
             computerChose.includes(gameImages[2])
         ) {
             score.innerText = "You win";
-            scoreCount++;
-            getScore = scoreCount;
-            playerScore.innerText = getScore;
-            localStorage.setItem("storedScore", getScore)
         } else if (
             playerChose.includes(gameImages[1]) &&
             computerChose.includes(gameImages[0])
@@ -121,10 +109,9 @@ imageChose.forEach(function (image) {
             score.innerText = "You win";
         }
 
-        playerScore.innerText = scoreCount;
-        // rock.style.pointerEvents = "none";
-        // paper.style.pointerEvents = "none";
-        // scissor.style.pointerEvents = "none";
+        rock.style.pointerEvents = "none";
+        paper.style.pointerEvents = "none";
+        scissor.style.pointerEvents = "none";
     });
 });
 
