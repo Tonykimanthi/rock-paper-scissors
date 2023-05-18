@@ -10,18 +10,20 @@
 </head>
 <body class="flex flex-col items-center gap-y-8 min-h-screen">
 
-    <p id="score" class="text-xl mt-8"></p>
+    <p id="score" class="text-xl mt-8">Play</p>
     <!-- Player and Computer -->
     <div class="flex gap-x-6">
         <div class="text-center">
-            <p>Player</p>            
-            <div class="player w-[14em] h-[12em] border border-blue-600 rounded-md">
+            <span>Player score</span>
+            <span id="player-score"></span>          
+            <div class="player w-[14em] h-[12em] border-blue-600 rounded-md">
 
             </div>
         </div>
         <div class="text-center">    
-            <p>Computer</p>        
-            <div class="computer w-[14em] h-[12em] border border-red-600 rounded-md">
+            <span>Computer score</span>
+            <span id="computer-score"></span>          
+            <div class="computer w-[14em] h-[12em] border-red-600 rounded-md">
 
             </div>
         </div>
