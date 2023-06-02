@@ -93,19 +93,16 @@ imageChose.forEach(function (image) {
             computerChose.includes(gameImages[2])
         ) {
             scoreCount++
-            let setScore = localStorage.setItem("storedScore", scoreCount);
-            let getScore = Number(localStorage.getItem("storedScore"));
-
-            getScore = scoreCount;
-            if(setScore){
-                scoreCount = getScore + 1;
-                playerScore.innerText = scoreCount;
-                localStorage.setItem("storedScore", scoreCount);
+            if(localStorage.getItem("storeScore")){
+                let localS = localStorage.getItem("storeScore");
+                localS = JSON.parse(localS);
+                playerScore.innerText = scoreCount
+                console.log(localS)
             }else{
-                playerScore.innerText = scoreCount;
-                console.log(scoreCount)
-                localStorage.setItem("storedScore", scoreCount);
+                scoreCount++
+                playerScore.innerText = scoreCount
             }
+            localStorage.setItem("storeScore", JSON.stringify(scoreCount));
             score.innerText = "You win";
             score.style.color = "blue"
             
