@@ -1,7 +1,7 @@
 let gameImages = [
-    "https://images.unsplash.com/photo-1584715642381-6f1c4b452b1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHJvY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1597338770339-9860acd8406e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1503792501406-2c40da09e1e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2Npc3NvcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1584715642381-6f1c4b452b1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHJvY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1597338770339-9860acd8406e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1503792501406-2c40da09e1e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2Npc3NvcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
 ];
 
 const player = document.querySelector(".player");
@@ -17,7 +17,6 @@ let randomImage = Math.floor(Math.random() * gameImages.length);
 player.style.backgroundPosition = "top";
 player.style.backgroundSize = "cover";
 player.style.backgroundRepeat = "no-repeat";
-
 
 // Creating image containers
 const rock = document.createElement("div");
@@ -56,89 +55,87 @@ scissor.style.borderRadius = "8px";
 scissor.style.cursor = "pointer";
 scissor.classList.add("clicked-image");
 
-
 let imageChose = document.querySelectorAll(".clicked-image");
 
 imageChose.forEach(function (image) {
-    image.addEventListener("click", function () {
-        const score = document.getElementById("score");
+  image.addEventListener("click", function () {
+    const score = document.getElementById("score");
 
-        const playerChose = image.style.backgroundImage;
-        player.style.backgroundImage = `${playerChose}`;
-        player.classList.add("animate-moveRight")
+    const playerChose = image.style.backgroundImage;
+    player.style.backgroundImage = `${playerChose}`;
+    player.classList.add("animate-moveRight");
 
-        computer.style.backgroundImage = `url(${gameImages[randomImage]})`;
-        computer.style.backgroundPosition = "top";
-        computer.style.backgroundSize = "cover";
-        computer.style.backgroundRepeat = "no-repeat";
-        computer.classList.add("moveLeft")
+    computer.style.backgroundImage = `url(${gameImages[randomImage]})`;
+    computer.style.backgroundPosition = "top";
+    computer.style.backgroundSize = "cover";
+    computer.style.backgroundRepeat = "no-repeat";
+    computer.classList.add("moveLeft");
 
-        const computerChose = computer.style.backgroundImage;
+    const computerChose = computer.style.backgroundImage;
 
-        let scoreCount = 0;
-        let playerScore = document.getElementById("player-score");
+    let scoreCount = 0;
+    let storeCount = '';
+    let playerScore = document.getElementById("player-score");
 
+    if (playerChose === computerChose) {
+      score.innerText = "Tie";
+      score.style.color = "green";
+    } else if (
+      playerChose.includes(gameImages[0]) &&
+      computerChose.includes(gameImages[1])
+    ) {
+      score.innerText = "You lose";
+      score.style.color = "red";
+    } else if (
+      playerChose.includes(gameImages[0]) &&
+      computerChose.includes(gameImages[2])
+    ) {
+      if (localStorage.getItem("storeScore")) {
+        let localS = localStorage.getItem("storeScore");
+        let parsedData = JSON.parse(localS);
+        playerScore.innerText = parsedData;
+        console.log(parsedData);
+      } else {
+        scoreCount++;
+        playerScore.innerText = scoreCount;
+        storeCount.push(scoreCount);
+        localStorage.setItem("storeScore", JSON.stringify(storeCount));
+      }
+      score.innerText = "You win";
+      score.style.color = "blue";
+    } else if (
+      playerChose.includes(gameImages[1]) &&
+      computerChose.includes(gameImages[0])
+    ) {
+      score.innerText = "You win";
+      score.style.color = "blue";
+    } else if (
+      playerChose.includes(gameImages[1]) &&
+      computerChose.includes(gameImages[2])
+    ) {
+      score.innerText = "You lose";
+      score.style.color = "red";
+    } else if (
+      playerChose.includes(gameImages[2]) &&
+      computerChose.includes(gameImages[0])
+    ) {
+      score.innerText = "You lose";
+      score.style.color = "red";
+    } else if (
+      playerChose.includes(gameImages[2]) &&
+      computerChose.includes(gameImages[1])
+    ) {
+      score.innerText = "You win";
+      score.style.color = "blue";
+    }
 
-        if (playerChose === computerChose) {
-            score.innerText = "Tie";
-            score.style.color = "green"
-        } else if (
-            playerChose.includes(gameImages[0]) &&
-            computerChose.includes(gameImages[1])
-        ) {
-            score.innerText = "You lose";
-            score.style.color = "red"
-        } else if (
-            playerChose.includes(gameImages[0]) &&
-            computerChose.includes(gameImages[2])
-        ) {
-            scoreCount++
-            if(localStorage.getItem("storeScore")){
-                let localS = localStorage.getItem("storeScore");
-                localS = JSON.parse(localS);
-                playerScore.innerText = scoreCount
-                console.log(localS)
-            }else{
-                scoreCount++
-                playerScore.innerText = scoreCount
-            }
-            localStorage.setItem("storeScore", JSON.stringify(scoreCount));
-            score.innerText = "You win";
-            score.style.color = "blue"
-            
-        } else if (
-            playerChose.includes(gameImages[1]) &&
-            computerChose.includes(gameImages[0])
-        ) {
-            score.innerText = "You win";
-            score.style.color = "blue"
-        } else if (
-            playerChose.includes(gameImages[1]) &&
-            computerChose.includes(gameImages[2])
-        ) {
-            score.innerText = "You lose";
-            score.style.color = "red"
-        } else if (
-            playerChose.includes(gameImages[2]) &&
-            computerChose.includes(gameImages[0])
-        ) {
-            score.innerText = "You lose";
-            score.style.color = "red"
-        } else if (
-            playerChose.includes(gameImages[2]) &&
-            computerChose.includes(gameImages[1])
-        ) {
-            score.innerText = "You win";
-            score.style.color = "blue"
-        }
-
-        rock.style.pointerEvents = "none";
-        paper.style.pointerEvents = "none";
-        scissor.style.pointerEvents = "none";
-    });
+    rock.style.pointerEvents = "none";
+    paper.style.pointerEvents = "none";
+    scissor.style.pointerEvents = "none";
+  });
 });
 
 // Refresh Page
 refreshBtn.addEventListener("click", function () {
-    location.reload();
+  location.reload();
 });
