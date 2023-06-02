@@ -90,7 +90,7 @@ imageChose.forEach(function (image) {
       playerChose.includes(gameImages[0]) &&
       computerChose.includes(gameImages[2])
     ) {
-      if (localStorage.getItem("storeScore")) {     //Incomplete
+      if (localStorage.getItem("storeScore")) {    //Working on it
         let localS = localStorage.getItem("storeScore");
         let parsedData = JSON.parse(localS);
         playerScore.innerText = parsedData;
