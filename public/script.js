@@ -73,6 +73,7 @@ imageChose.forEach(function (image) {
 
     const computerChose = computer.style.backgroundImage;
 
+
     let playerScore = document.getElementById("player-score");
 
     if (playerChose === computerChose) {
