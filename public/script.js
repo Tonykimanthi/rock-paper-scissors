@@ -73,8 +73,6 @@ imageChose.forEach(function (image) {
 
     const computerChose = computer.style.backgroundImage;
 
-    let scoreCount = 0;
-    let storeCount = '';
     let playerScore = document.getElementById("player-score");
 
     if (playerChose === computerChose) {
@@ -90,17 +88,6 @@ imageChose.forEach(function (image) {
       playerChose.includes(gameImages[0]) &&
       computerChose.includes(gameImages[2])
     ) {
-      if (localStorage.getItem("storeScore")) {    //Working on it
-        let localS = localStorage.getItem("storeScore");
-        let parsedData = JSON.parse(localS);
-        playerScore.innerText = parsedData;
-        console.log(parsedData);
-      } else {
-        scoreCount++;
-        playerScore.innerText = scoreCount;
-        storeCount.push(scoreCount);
-        localStorage.setItem("storeScore", JSON.stringify(storeCount));
-      }
       score.innerText = "You win";
       score.style.color = "blue";
     } else if (
