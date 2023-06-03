@@ -57,8 +57,8 @@ scissor.classList.add("clicked-image");
 
 let imageChose = document.querySelectorAll(".clicked-image");
 
-imageChose.forEach(function (image) {
-  image.addEventListener("click", function () {
+imageChose.forEach((image) => {
+  image.addEventListener("click", () => {
     const score = document.getElementById("score");
 
     const playerChose = image.style.backgroundImage;
@@ -72,7 +72,6 @@ imageChose.forEach(function (image) {
     computer.classList.add("moveLeft");
 
     const computerChose = computer.style.backgroundImage;
-
 
     let playerScore = document.getElementById("player-score");
 
@@ -116,10 +115,15 @@ imageChose.forEach(function (image) {
       score.innerText = "You win";
       score.style.color = "blue";
     }
-
     // rock.style.pointerEvents = "none";
     // paper.style.pointerEvents = "none";
     // scissor.style.pointerEvents = "none";
   });
 });
 
+refreshBtn.addEventListener('click', ()=>{
+  computer.style.backgroundImage = `url(${gameImages[randomImage]})`;
+
+  player.style.backgroundImage = "none";
+  computer.style.backgroundImage = "none";
+})
