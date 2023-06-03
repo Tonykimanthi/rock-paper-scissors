@@ -129,13 +129,9 @@ imageChose.forEach(function (image) {
       score.style.color = "blue";
     }
 
-    rock.style.pointerEvents = "none";
-    paper.style.pointerEvents = "none";
-    scissor.style.pointerEvents = "none";
+    // rock.style.pointerEvents = "none";
+    // paper.style.pointerEvents = "none";
+    // scissor.style.pointerEvents = "none";
   });
 });
 
-// Refresh Page
-refreshBtn.addEventListener("click", function () {
-  location.reload();
-});
