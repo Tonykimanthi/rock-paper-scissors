@@ -115,15 +115,12 @@ imageChose.forEach((image) => {
       score.innerText = "You win";
       score.style.color = "blue";
     }
-    // rock.style.pointerEvents = "none";
-    // paper.style.pointerEvents = "none";
-    // scissor.style.pointerEvents = "none";
+    rock.style.pointerEvents = "none";
+    paper.style.pointerEvents = "none";
+    scissor.style.pointerEvents = "none";
   });
 });
 
 refreshBtn.addEventListener('click', ()=>{
-  computer.style.backgroundImage = `url(${gameImages[randomImage]})`;
-
-  player.style.backgroundImage = "none";
-  computer.style.backgroundImage = "none";
+  location.reload()
 })
